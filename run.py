@@ -14,6 +14,10 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                g.mouse_down(event.pos)
+            if event.type == pygame.MOUSEBUTTONUP:
+                g.mouse_up(event.pos)
 
         g.update(clock.get_time())
         g.render(g.win)
