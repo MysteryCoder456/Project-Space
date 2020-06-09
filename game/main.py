@@ -1,4 +1,7 @@
 import pygame
+from glm import vec2
+
+from game.blackhole import BlackHole
 
 
 class Game:
@@ -8,10 +11,14 @@ class Game:
         pygame.display.set_caption("Project Space")
         self.background = pygame.Color("black")
 
+        self.bl = BlackHole(vec2(w/2, h/2), 50)
+
     def update(self, dt):
         pass
 
     def render(self, window):
         window.fill(self.background)
-        pygame.draw.rect(window, (255, 255, 255), (100, 100, 500, 500))
+
+        self.bl.render(window)
+
         pygame.display.update()
