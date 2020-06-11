@@ -15,7 +15,7 @@ class Entity:
     def attract_towards(self, entity):
         # Get the distance and gravitational force
         r = distance(entity.pos, self.pos)
-        G = 5
+        G = 6000
         F = (entity.mass * self.mass) / r**2 * G
 
         # Calculate gravitaional vector

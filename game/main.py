@@ -14,7 +14,7 @@ class Game:
 
         self.bl = BlackHole(vec2(w / 2, h / 2), 50)
         self.planet = Planet(vec2(300, h / 2), 10, (200, 200, 200))
-        self.planet.vel += vec2(0, 0.2)
+        self.planet.vel += vec2(0, 300)
 
     def mouse_down(self, pos):
         print("down:", pos)

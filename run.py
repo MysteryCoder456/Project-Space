@@ -19,7 +19,7 @@ def main():
             if event.type == pygame.MOUSEBUTTONUP:
                 g.mouse_up(event.pos)
 
-        g.update(clock.get_time())
+        g.update(clock.get_time() / 1000)
         g.render(g.win)
 
 
