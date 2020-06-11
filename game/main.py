@@ -2,6 +2,7 @@ import pygame
 from glm import vec2
 
 from game.blackhole import BlackHole
+from game.planet import Planet
 
 
 class Game:
@@ -12,6 +13,8 @@ class Game:
         self.background = pygame.Color("black")
 
         self.bl = BlackHole(vec2(w / 2, h / 2), 50)
+        self.planet = Planet(vec2(300, h / 2), 10, (200, 200, 200))
+        self.planet.vel += vec2(0, 0.2)
 
     def mouse_down(self, pos):
         print("down:", pos)
@@ -20,11 +23,13 @@ class Game:
         print("up:", pos)
 
     def update(self, dt):
-        pass
+        self.planet.attract_towards(self.bl)
+        self.planet.update(dt)
 
     def render(self, window):
         window.fill(self.background)
 
         self.bl.render(window)
+        self.planet.render(window)
 
         pygame.display.update()

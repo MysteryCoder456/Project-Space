@@ -8,4 +8,4 @@ class BlackHole(Entity):
     def render(self, window):
         super().render(window)
         border = self.mass // 6
-        pygame.draw.ellipse(window, (244, 136, 13), self.rect, border)
+        pygame.draw.circle(window, (244, 136, 13), self.pos, self.radius, border)

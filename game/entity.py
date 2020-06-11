@@ -1,5 +1,6 @@
-from glm import vec2
+import math
 import pygame
+from glm import vec2, distance
 
 
 class Entity:
@@ -9,11 +10,24 @@ class Entity:
         self.vel: vec2 = vec2(0)
 
         self.radius = (mass ** 0.5) * 5
-        self.rect = (self.pos.x - self.radius, self.pos.y - self.radius, self.radius * 2, self.radius * 2)
         self.color = (0, 0, 0)
+
+    def attract_towards(self, entity):
+        # Get the distance and gravitational force
+        r = distance(entity.pos, self.pos)
+        G = 5
+        F = (entity.mass * self.mass) / r**2 * G
+
+        # Calculate gravitaional vector
+        diff = entity.pos - self.pos
+        angle = math.atan2(diff.y, diff.x)
+        acceleration = (vec2(math.cos(angle), math.sin(angle)) * F) / self.mass # F=ma
+
+        # Add the vector to the velocity
+        self.vel += acceleration
 
     def update(self, dt):
         self.pos += self.vel * dt
 
     def render(self, window):
-        pygame.draw.ellipse(window, self.color, self.rect)
+        pygame.draw.circle(window, self.color, self.pos, self.radius)
