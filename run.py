@@ -5,12 +5,11 @@ from game.main import Game
 def main():
     pygame.init()
     g = Game(1024, 768)
-
     clock = pygame.time.Clock()
     fps = 60
 
     while True:
-        clock.tick(fps)
+        dt = clock.tick(fps) / 1000
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
@@ -19,7 +18,7 @@ def main():
             if event.type == pygame.MOUSEBUTTONUP:
                 g.mouse_up(event.pos)
 
-        g.update(clock.get_time() / 1000)
+        g.update(dt)
         g.render(g.win)
 
 

@@ -5,11 +5,19 @@ from glm import vec2, distance
 
 class Entity:
     def __init__(self, pos: vec2, mass):
+        """
+        Celestial Body
+
+        Args:
+            pos (vec2): inital position,
+            mass (float/int): mass of body,
+        """
+
         self.pos: vec2 = pos
         self.mass = mass
         self.vel: vec2 = vec2(0)
 
-        self.radius = (mass ** 0.5) * 5
+        self.radius = math.sqrt(mass) * 5
         self.color = (0, 0, 0)
 
     def attract_towards(self, entity):

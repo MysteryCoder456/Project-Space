@@ -12,9 +12,11 @@ class Game:
         pygame.display.set_caption("Project Space")
         self.background = pygame.Color("black")
 
-        self.bl = BlackHole(vec2(w / 2, h / 2), 50)
-        self.planet = Planet(vec2(300, h / 2), 10, (200, 200, 200))
-        self.planet.vel += vec2(0, 300)
+        self.bl = BlackHole(vec2(w - 450, h / 2), 50)
+        self.bl.vel += vec2(0, 300)
+
+        self.planet = Planet(vec2(450, h / 2), 50, (200, 200, 200))
+        self.planet.vel += vec2(0, -300)
 
     def mouse_down(self, pos):
         print("down:", pos)
@@ -24,7 +26,10 @@ class Game:
 
     def update(self, dt):
         self.planet.attract_towards(self.bl)
+        self.bl.attract_towards(self.planet)
+
         self.planet.update(dt)
+        self.bl.update(dt)
 
     def render(self, window):
         window.fill(self.background)
