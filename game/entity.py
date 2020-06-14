@@ -23,12 +23,12 @@ class Entity:
         # Get the distance and gravitational force
         r = distance(entity.pos, self.pos)
         G = 6000
-        F = (entity.mass * self.mass) / r**2 * G
+        F = (entity.mass * self.mass) / r ** 2 * G
 
         # Calculate gravitaional vector
         diff = entity.pos - self.pos
         normalized = diff / distance(entity.pos, self.pos)
-        acceleration = (normalized * F) / self.mass # F=ma
+        acceleration = (normalized * F) / self.mass  # F=ma
 
         # Add the vector to the velocity
         self.vel += acceleration
