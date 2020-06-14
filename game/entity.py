@@ -28,8 +28,8 @@ class Entity:
 
         # Calculate gravitaional vector
         diff = entity.pos - self.pos
-        angle = math.atan2(diff.y, diff.x)
-        acceleration = (vec2(math.cos(angle), math.sin(angle)) * F) / self.mass # F=ma
+        normalized = diff / distance(entity.pos, self.pos)
+        acceleration = (normalized * F) / self.mass # F=ma
 
         # Add the vector to the velocity
         self.vel += acceleration
