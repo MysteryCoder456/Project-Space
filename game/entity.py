@@ -1,4 +1,3 @@
-import math
 import pygame
 from glm import vec2, distance
 
@@ -17,7 +16,7 @@ class Entity:
         self.mass = mass
         self.vel: vec2 = vec2(0)
 
-        self.radius = math.sqrt(mass) * 5
+        self.radius = (self.mass ** 0.5) * 5
         self.color = (0, 0, 0)
 
     def attract_towards(self, entity):
