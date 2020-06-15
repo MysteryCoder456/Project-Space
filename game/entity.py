@@ -19,6 +19,10 @@ class Entity:
         self.radius = (self.mass ** 0.5) * 5
         self.color = (0, 0, 0)
 
+    def is_colliding(self, entity):
+        d = distance(self.pos, entity.pos)
+        return d <= self.radius + entity.radius
+
     def attract_towards(self, entity):
         # Get the distance and gravitational force
         r = distance(entity.pos, self.pos)
