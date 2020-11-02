@@ -38,6 +38,7 @@ class Game:
 
         if self.p1.is_colliding(self.p2):
             self.p1.collide(self.p2)
+            self.p2.collide(self.p1)
 
     def render(self, window):
         window.fill(self.background)

@@ -1,4 +1,5 @@
-from glm import vec2
+import math
+from glm import vec2, distance
 import pygame
 
 from game.entity import Entity
@@ -11,7 +12,7 @@ class Planet(Entity):
 
         Args:
             pos (vec2): initial position,
-            mass (float/int): mass of body,
+            mass (float): mass of body,
             color (tuple/pygame.Color): color of the planet
         """
 
@@ -19,20 +20,12 @@ class Planet(Entity):
         self.color = color
 
     def collide(self, entity: Entity):
-        mul1 = 0.93
-        new_vel_1 = vec2(
-            (self.vel.x * (self.mass - entity.mass) + (2 * entity.mass * entity.vel.x)) / (self.mass + entity.mass),
-            (self.vel.y * (self.mass - entity.mass) + (2 * entity.mass * entity.vel.y)) / (self.mass + entity.mass)
-        ) * mul1
-        new_vel_2 = vec2(
-            (entity.vel.x * (entity.mass - self.mass) + (2 * self.mass * self.vel.x)) / (entity.mass + self.mass),
-            (entity.vel.y * (entity.mass - self.mass) + (2 * self.mass * self.vel.y)) / (entity.mass + self.mass)
-        ) * mul1
+        dx = self.pos.x - entity.pos.x
+        dy = self.pos.y - entity.pos.y
+        angle = math.atan2(dy, dx)
 
-        mul2 = 0.7
-
-        self.pos += new_vel_1 / self.radius * mul2
-        entity.pos += new_vel_2 / entity.radius * mul2
-
-        self.vel = new_vel_1
-        entity.vel = new_vel_2
+        mag = distance(self.pos, self.vel)
+        self.vel = vec2(
+            math.cos(angle) * mag,
+            math.sin(angle) * mag
+        )
