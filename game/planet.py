@@ -24,7 +24,7 @@ class Planet(Entity):
         dy = self.pos.y - entity.pos.y
         angle = math.atan2(dy, dx)
 
-        mag = distance(self.pos, self.vel)
+        mag = distance(vec2(0, 0), self.vel)
         self.vel = vec2(
             math.cos(angle) * mag,
             math.sin(angle) * mag

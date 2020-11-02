@@ -9,3 +9,6 @@ class BlackHole(Entity):
         super().render(window)
         border = round(self.radius / 6)
         pygame.draw.circle(window, (244, 136, 13), self.pos, self.radius, border)
+
+    def update(self, dt):
+        pass

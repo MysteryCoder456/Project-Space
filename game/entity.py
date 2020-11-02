@@ -31,11 +31,11 @@ class Entity:
 
         # Calculate gravitaional vector
         diff = entity.pos - self.pos
-        normalized = diff / distance(entity.pos, self.pos)
-        acceleration = (normalized * F) / self.mass  # F=ma
+        direction = diff / r
+        acceleration = F / self.mass  # F=ma
 
         # Add the vector to the velocity
-        self.vel += acceleration
+        self.vel += acceleration * direction
 
     def update(self, dt):
         self.pos += self.vel * dt

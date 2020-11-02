@@ -15,10 +15,11 @@ class Game:
         # self.bl = BlackHole(vec2(w - 450, h / 2), 50)
         # self.bl.vel += vec2(0, 300)
 
-        self.p1 = Planet(vec2(200, h / 2), 40, (200, 200, 200))
+        self.p1 = Planet(vec2(w / 2 - 100, h / 2), 45, (200, 200, 200))
+        self.p1.vel += vec2(0, -25)
 
-        self.p2 = Planet(vec2(w - 200, h / 2), 20, (200, 200, 200))
-        self.p2.vel += vec2(0, 50)
+        self.p2 = Planet(vec2(w - 150, h / 2), 15, (200, 200, 200))
+        self.p2.vel += vec2(0, 75)
 
     def mouse_down(self, pos):
         print("down:", pos)
@@ -29,8 +30,6 @@ class Game:
     def update(self, dt):
         self.p1.attract_towards(self.p2)
         self.p2.attract_towards(self.p1)
-
-        # self.bl.attract_towards(self.p1)
 
         self.p1.update(dt)
         self.p2.update(dt)
