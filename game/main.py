@@ -16,7 +16,7 @@ class Game:
         # self.bl.vel += vec2(0, 300)
 
         self.p1 = Planet(vec2(w / 2 - 100, h / 2), 45, (200, 200, 200))
-        self.p1.vel += vec2(0, -25)
+        # self.p1.vel += vec2(0, -25)
 
         self.p2 = Planet(vec2(w - 150, h / 2), 15, (200, 200, 200))
         self.p2.vel += vec2(0, 75)
